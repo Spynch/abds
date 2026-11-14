@@ -1,0 +1,485 @@
+{
+  "info": {
+    "name": "EnergoSbyt Lab 1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Ping",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/ping"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/ping"
+          },
+          "code": 200,
+          "header": [],
+          "body": ""
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get owner",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/users/1"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/users/1"
+          },
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": 1,\n  \"fio\": \"Owner 1\",\n  \"phone\": \"+79000000001\",\n  \"phone_prev\": \"\"\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Update owner",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/users/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fio\": \"New name\",\n  \"phone\": \"+79990000001\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/users/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fio\": \"New name\",\n  \"phone\": \"+79990000001\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 204,
+          "header": [],
+          "body": ""
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 204\", function () { pm.response.to.have.status(204); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get realty",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/realty/1"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/realty/1"
+          },
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": 1,\n  \"address\": \"Moscow, Energy street, 1\",\n  \"square\": 41,\n  \"type\": \"flat\",\n  \"number\": \"1\",\n  \"rooms\": 2,\n  \"floor\": 2,\n  \"porch\": 2\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Send reading",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/realty/1/readings",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": 1,\n  \"gauge_id\": 1001,\n  \"tariff_id\": 1,\n  \"reading_date\": \"2026-10-01\",\n  \"day_kw\": 1250,\n  \"night_kw\": 300\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/realty/1/readings",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"gauge_id\": 1001,\n  \"tariff_id\": 1,\n  \"reading_date\": \"2026-10-01\",\n  \"day_kw\": 1250,\n  \"night_kw\": 300\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 201,
+          "header": [],
+          "body": ""
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 201\", function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List readings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/realty/1/readings?date_from=2026-10-01&date_to=2026-10-01"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/realty/1/readings?date_from=2026-10-01&date_to=2026-10-01"
+          },
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"readings\": [\n    {\n      \"reading_date\": \"2026-10-01\",\n      \"user_id\": 1,\n      \"tariff_id\": 1,\n      \"gauge_id\": 1001,\n      \"day_kw\": 1250,\n      \"night_kw\": 300\n    }\n  ],\n  \"count\": 1\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List invoices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/realty/1/invoices?limit=1&offset=0"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/realty/1/invoices?limit=1&offset=0"
+          },
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"invoices\": [\n    {\n      \"tariff_id\": 1,\n      \"gauge_id\": 1001,\n      \"day_kw\": 217,\n      \"night_kw\": 77,\n      \"price\": 158410,\n      \"deadline\": \"2026-11-10\",\n      \"created_at\": \"2026-10-31 23:00:00\"\n    }\n  ],\n  \"count\": 36\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tariff on date",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/tariffs?date=2026-10-27"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/tariffs?date=2026-10-27"
+          },
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": 1,\n  \"name\": \"Day-Night\",\n  \"price_day_kwph\": 620,\n  \"price_night_kwph\": 310,\n  \"valid_from\": \"2025-11-01 00:00:00\",\n  \"valid_to\": \"2099-01-01 00:00:00\"\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Replace gauge",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/realty/1/gauges",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"gauge_id\": 1100\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/realty/1/gauges",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gauge_id\": 1100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 201,
+          "header": [],
+          "body": ""
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 201\", function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Not found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/users/999999"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/users/999999"
+          },
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"Not found\"\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 404\", function () { pm.response.to.have.status(404); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid date",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/tariffs?date=invalid"
+      },
+      "response": [
+        {
+          "name": "Example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/tariffs?date=invalid"
+          },
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"invalid \\\"date\\\" parameter\"\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 400\", function () { pm.response.to.have.status(400); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
