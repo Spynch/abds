@@ -1,0 +1,1 @@
+"""EnergoSbyt lab service."""
