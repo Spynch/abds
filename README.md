@@ -6,8 +6,11 @@ Python использует только стандартную библиоте
 
 ## Запуск
 
-Нужны Docker с Compose, GNU Make и Python 3.10+ на хосте.
+Нужны Docker с Compose 2.20+ (поддержка include), GNU Make и Python 3.10+ на хосте.
 Все параметры подключения находятся в `.env.local`; файл включён в Git.
+Корневой `docker-compose.yml` подключает `compose.services.yml` через `include`
+с `env_file: .env.local`. Поэтому обычные `docker compose logs` и
+`docker compose down -v` также загружают настройки без флага `--env-file`.
 Пароль в нём учебный, публичный. Авторизации HTTP API по условию нет.
 
 ```sh
